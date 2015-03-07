@@ -1,40 +1,38 @@
 package com.unico.challenge;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * @author alex
  *
  */
-public class Node<T> {
+public class Node {
 
-	private Node<T> leftChild;
-	private Node<T> rightChild;
+	private final List<Node> children = new LinkedList<>();
 
-	private Node<T> parent;
+	private final String name;
 
-	private final T data;
-
-	public Node(Node<T> parent, T data) {
-		this.parent = parent;
-		this.data = data;
+	public Node(String name) {
+		this.name = name;
 	}
 
-	public T getData() {
-		return data;
+	public String getName() {
+		return name;
 	}
 
-	public Node<T> getLeftChild() {
-		return leftChild;
-	}
-
-	public Node<T> getRightChild() {
-		return rightChild;
-	}
-
-	public Node<T> getParent() {
-		return parent;
+	public List<Node> getChildren() {
+		return Collections.unmodifiableList(children);
 	}
 
 	public boolean isLeaf() {
-		return leftChild == null && rightChild == null;
+		return children.isEmpty();
+	}
+
+	public void addChild(Node child) {
+		if (!children.contains(child)) {
+			children.add(child);
+		}
 	}
 }
