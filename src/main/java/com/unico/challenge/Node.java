@@ -35,4 +35,18 @@ public class Node {
 			children.add(child);
 		}
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o == null || !(o instanceof Node)) {
+			return false;
+		}
+		Node that = (Node) o;
+		return this.name.equals(that.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
 }
